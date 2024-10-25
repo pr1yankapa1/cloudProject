@@ -1,0 +1,89 @@
+/* Container Styles */
+.container-fluid {
+    padding: 2rem 1rem;
+}
+
+.row {
+    margin: 0;
+}
+
+/* Categories Sidebar */
+.list-group {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+}
+
+.list-group-item {
+    border: none;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s;
+}
+
+.list-group-item:hover {
+    background-color: #e9ecef;
+}
+
+/* Products Section */
+#products h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Card Styles */
+.card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+/* Card Body */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.card-text {
+    color: #6c757d;
+}
+
+/* Add to Cart Section */
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-light {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+}
+
+.btn-light:hover {
+    background-color: #e2e6ea;
+}
+
+/* Button Sizes */
+.btn-block {
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+}

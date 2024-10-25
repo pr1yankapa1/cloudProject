@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4 text-success">Welcome to Garden Grove</h2>
+    <p class="text-center mb-5">We are dedicated to helping you bring a touch of nature into your home.</p>
+
+    <!-- Jumbotron Section -->
+    <section class="jumbotron text-center mb-0" style="background: rgba(255, 255, 255, 0.8);">
+        <div class="container">
+            <h1 class="jumbotron-heading display-4 font-weight-bold text-dark">GARDEN GROVE – Bring Nature Into Your Home</h1>
+            <p class="lead text-muted">Transform your living space with our beautiful plants and garden accessories.</p>
+            <p>
+                <a href="/store" class="btn btn-lg btn-success my-2" style="background-color: #4CAF50; border-color: #388E3C;">Visit Our Store</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="mt-5">
+        <h3 class="text-center text-success">About Us</h3>
+        <p class="text-center text-muted">
+            At Garden Grove, our mission is to help you create a beautiful and tranquil living environment through the power of nature. 
+            We offer a curated selection of indoor and outdoor plants, as well as gardening tools and accessories to meet all your gardening needs.
+        </p>
+    </section>
+
+    
+    <!-- Contact Us Section -->
+    <section class="mt-5">
+        <h3 class="text-center text-success">Contact Us</h3>
+        <p class="text-center text-muted">
+            We'd love to hear from you! If you have any questions or need assistance, please reach out to us.
+        </p>
+        <div class="text-center">
+            <p><strong>Phone:</strong> <span class="text-muted">+1 (123) 456-7890</span></p>
+            <p><strong>Email:</strong> <a href="mailto:info@gardengrove.com" class="text-success">info@gardengrove.com</a></p>
+            <p><strong>Address:</strong> <span class="text-muted">123 Green Lane, Plant City, FL 12345</span></p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="text-center mt-5 mb-4">
+        <p class="text-muted">&copy; 2024 Garden Grove. All rights reserved.</p>
+    </footer>
+</div>
+
+<style>
+    /* Custom styles */
+    body {
+        background: linear-gradient(to bottom, #e8f5e9, #ffffff); /* Light green to white gradient */
+        color: #333; /* Darker text for contrast */
+        font-family: 'Arial', sans-serif; /* Consistent font */
+    }
+    .jumbotron {
+        background: rgba(255, 255, 255, 0.8); /* Light white for better visibility */
+        color: #0056b3; /* Dark blue text for headings */
+    }
+    .jumbotron-heading {
+        color: #007bff; /* Blue for main heading */
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    }
+    h3 {
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    .btn-success {
+        background-color: #4CAF50; /* Green background */
+        border-color: #388E3C; /* Darker green border */
+        color: white; /* White text for contrast */
+    }
+    .btn-success:hover {
+        background-color: #45a049; /* Slightly darker green on hover */
+    }
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,142 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Meta description and keywords for SEO -->
+    <meta name="description" content="Your nursery store description here.">
+    <meta name="keywords" content="nursery, plants, gardening, flowers, seeds">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Nursery Store</title>
+    <style>
+        /* Custom styles */
+        body {
+            background: linear-gradient(#e6ffe6, #ffffff); /* Light green to white gradient */
+            font-family: 'Arial', sans-serif; /* Change font for readability */
+        }
+        .jumbotron {
+            background: rgba(0, 123, 255, 0.8); /* Semi-transparent blue background for jumbotron */
+            color: white;
+            padding: 4rem 2rem; /* Adjust padding for better spacing */
+            border-radius: 0.5rem;
+            text-align: center; /* Center align text */
+        }
+        .jumbotron h1 {
+            font-size: 3.5rem; /* Larger heading */
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8); /* Shadow for better visibility */
+            margin-bottom: 0.5rem; /* Add some space below the heading */
+        }
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow for more emphasis */
+            transition: background-color 0.3s; /* Smooth background transition */
+            background-color: white; /* White background for navbar */
+        }
+        .navbar:hover {
+            background-color: #f1f1f1; /* Slightly darker white on hover */
+        }
+        .navbar-brand, .nav-link {
+            color: #007bff; /* Brand color (blue) */
+            font-weight: bold; /* Make text bold for better emphasis */
+        }
+        .nav-link {
+            margin-right: 15px; /* Space between links */
+        }
+        .nav-link:hover {
+            color: #0056b3; /* Darker blue on hover */
+            text-decoration: underline; /* Underline on hover for better indication */
+        }
+        .btn-success {
+            background-color: #4CAF50; /* Button color (blue) */
+            border-color: #007bff; /* Button border color */
+            transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+        }
+        .btn-success:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            border-color: #004085; /* Darker border on hover */
+        }
+        .badge-info {
+            background-color: #17a2b8; /* Change badge color for better visibility */
+        }
+
+        /* Sidebar styles */
+        .list-group {
+            background-color: #dfffd6; /* Light green background */
+            border-radius: 0.5rem; /* Rounded corners */
+        }
+        .list-group-item {
+            border: none; /* No border for list items */
+            border-radius: 0; /* Remove border radius for list items */
+            color: #005700; /* Dark green text */
+        }
+        .list-group-item.active {
+            background-color: #b3ffb3; /* Slightly darker green for active item */
+            color: #004d00; /* Darker text for active item */
+        }
+        .list-group-item:hover {
+            background-color: #ccffcc; /* Light green hover effect */
+        }
+    </style>
+</head>
+<body>
+    <nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png' %}" height="70" width="70" alt="Nursery Store Logo">        
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'store' %}">Store</a>
+                </li>
+            </ul>
+    
+            <ul class="navbar-nav my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cart' %}">Cart
+                        <span class="badge badge-info">{{ request.session.cart.keys|length }}</span>
+                    </a>
+                </li>
+                {% if request.session.customer %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'orders' %}">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    
+
+    {% block content %}{% endblock content %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load cart %}
+{% load custom_filter %}
+
+<section class="container-fluid m-3">
+    <div class="row">
+
+        <!-- Categories Sidebar -->
+        <div class="col-lg-3 mx-auto">
+            <h2 class="h3 text-center text-success">Categories</h2>
+            <div class="list-group">
+                <a href="{% url 'store' %}" class="list-group-item list-group-item-action active">All Products</a>
+            </div>
+            {% for category in categories %}
+                <a href="{% url 'store' %}?category={{ category.id }}" class="list-group-item list-group-item-action">{{ category.name }}</a>
+            {% endfor %}
+        </div>
+
+        <!-- Products Section -->
+        <div id="products" class="col-lg-9">
+            <h2>Products</h2>
+            <div class="row">
+                {% for product in products %}
+                <div class="card mb-3 mx-2" id="{{ product.id }}" style="width: 18rem;">
+                    <a href="{% url 'product_detail' product.id %}" class="stretched-link">
+                        <img class="card-img-top" src="{{ product.image.url }}" alt="Product image" style="width:100%;height:300px; object-fit:cover;">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-title text-center font-weight-bold">{{ product.name }}</p>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p class="card-text"><b>{{ product.price|currency }}</b></p>
+                    </div>
+
+                    <!-- Add to Cart Section -->
+                    <div class="card-footer p-0 no-gutters">
+                        {% with item_key="product_"|add:product.id|stringformat:"s" %}
+                        {% if item_key|is_in_cart:request.session.cart %}
+                        <div class="row no-gutters">
+                            <form action="/#{{ product.id }}" class="col-2" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="product" value="{{ product.id }}">
+                                <input type="hidden" name="remove" value="True">
+                                <input type="submit" value=" - " class="btn btn-block btn-light border-right">
+                            </form>
+                            <form action="/#{{ product.id }}" class="col-2" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="product" value="{{ product.id }}">
+                                <input type="submit" value=" + " class="btn btn-block btn-light border-left">
+                            </form>
+                        </div>
+                        {% else %}
+                        <form action="/#{{ product.id }}" method="POST" class="btn-block">
+                            {% csrf_token %}
+                            <input type="hidden" name="product" value="{{ product.id }}">
+                            <input type="submit" class="float-right btn btn-light form-control" value="Buy now">
+                        </form>
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Planters Section -->
+            <h2>Planters</h2>
+            <div class="row">
+                {% for planter in planters %}
+                <div class="card mb-3 mx-2" id="{{ planter.id }}" style="width: 18rem;">
+                    <a href="{% url 'planter_detail' planter.id %}" class="stretched-link">
+                        <img class="card-img-top" src="{{ planter.image.url }}" alt="Planter image" style="width:100%;height:300px; object-fit:cover;">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-title text-center font-weight-bold">{{ planter.name }}</p>
+                        <p class="card-text">{{ planter.description }}</p>
+                        <p class="card-text"><b>{{ planter.price|currency }}</b></p>
+                    </div>
+
+                    <!-- Add to Cart Section -->
+                    <div class="card-footer p-0 no-gutters">
+                        {% with item_key="planter_"|add:planter.id|stringformat:"s" %}
+                        {% if item_key|is_in_cart:request.session.cart %}
+                        <div class="row no-gutters">
+                            <form action="/#{{ planter.id }}" class="col-2" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="planter" value="{{ planter.id }}">
+                                <input type="hidden" name="remove" value="True">
+                                <input type="submit" value=" - " class="btn btn-block btn-light border-right">
+                            </form>
+                            <div class="text-center col">{{ item_key|cart_quantity:request.session.cart }} in Cart</div>
+                            <form action="/#{{ planter.id }}" class="col-2" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="planter" value="{{ planter.id }}">
+                                <input type="submit" value=" + " class="btn btn-block btn-light border-left">
+                            </form>
+                        </div>
+                        {% else %}
+                        <form action="/#{{ planter.id }}" method="POST" class="btn-block">
+                            {% csrf_token %}
+                            <input type="hidden" name="planter" value="{{ planter.id }}">
+                            <input type="submit" class="float-right btn btn-light form-control" value="Buy now">
+                        </form>
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* Custom styles for the sidebar */
+    .list-group {
+        background-color: #d4edda; /* Light green background */
+        border-radius: 5px;
+    }
+    .list-group-item {
+        background-color: #d4edda; /* Light green */
+        color: #155724; /* Dark green text */
+        border: none; /* No border */
+        border-radius: 5px;
+    }
+    .list-group-item:hover {
+        background-color: #c3e6cb; /* Slightly darker green on hover */
+        color: #155724; /* Keep text color */
+    }
+    .list-group-item.active {
+        background-color: #28a745; /* Active item green */
+        color: white; /* White text for active item */
+    }
+</style>
+
+{% endblock %}
